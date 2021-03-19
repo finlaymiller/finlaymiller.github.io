@@ -7,6 +7,7 @@ tags:
   - CS285
   - Machine Learning
   - Deep Reinforcement Learning
+mathjax: true
 ---
 
 ## Introduction
