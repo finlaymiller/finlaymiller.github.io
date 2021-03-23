@@ -38,7 +38,7 @@ Given $$s_t$$ we can find $$p(s_{t+1} \mid s_t, a_t)$$ without $$s_{t-1}$$. It i
 Often doesn't work because small errors in the learned model compound and it doesn't know how to recover (e.g. NVIDIA car). 
 The mathematical explanation is that when running the expected trajectory we're sampling from the distribution $$\pi_\theta(a_t \mid o_t)$$, which was trained on the data distribution $$p_{data}(o_t)$$. When errors compound $$p_{data}(o_t) \neq p_{\pi_\theta}(o_t)$$.
 
-### Data Aggregation [DAgger]
+### Data Aggregation (DAgger)
 
 We need $$p_{\pi_\theta}(o_t) = p_{data}(o_t)$$ to minimize the errors seen in behavior cloning. What if, instead of optimizing $$p_{\pi_\theta}(o_t)$$, we optimized $$p_{data}(o_t)$$? We want to collect training date from $$p_{\pi_\theta}(o_t)$$ instead of $$p_{data}(o_t)$$, which we can do by running $$\pi_\theta(a_t \mid o_t)$$ once we have $$a_t$$.
 
@@ -58,10 +58,28 @@ It's possible to make a model without the distributional drift problem, but firs
    2. We could input a latent variable $$\xi ~ N(0,I)$$ into the model alongside our images, essentially injecting random noise. Can theoretically represent any distribution, but can be hard to train.
    3. Autoregressive discretization is a happy medium between the two options listed above. It takes advantage of the fact that discrete actions are easily representable by a softmax distribution, sidestepping the multi-modality problem.
 
+### Cost Functions
+
 How can we "score" actions mathematically? Cost/reward functions! If we wanted to minimize cost (Note that the cost is the negative of the reward) (we do), we would minimize the expectation under a distribution over sequences of states and actions of the sum of the cost function.
 
+$$ min_\theta \ (E_{s_{1:T},a_{1:T}} \left[ \sum_t c(s_{t},a_{t}) \right]) $$
+
+A reasonable reward function could be the log probability of an expert's action:
+
+$$ r(s,a) = log\;p(a = \pi^* (s) \mid s) $$
+
+$$\pi^*$$ is the unknown expert policy. Another cost function could be a 0-1 loss function, which assigns a 0 if we perfectly match the expert's actions and a 1 in every other case (harsh!):
+
 $$
- min_\theta \ (E_{s_{1:T},a_{1:T}} \left[ \sum_t c(s_{t},a_{t}) \right])
+c(s,a) =
+\begin{cases}
+0 \;\textrm{if}\; a = \pi^*(s) \\
+1 \;\textrm{otherwise} \\
+\end{cases}
 $$
+
+If we assume that $$\pi_\theta(a\neq\pi^*(s)\mid s)\leq\epsilon$$ for all $$s\in D_{train}$$\footnote{This is naively assuming that for all states in the training set, the probability of making a mistake at those steps is $\leq\epsilon$, where $\epsilon$ is a small number.} (remember the tightrope walker scenario) then the probability function is:
+
+$$ p_\theta(s_t) = (1-\epsilon)^t p_{train}(s_t)+(1-(1-\epsilon)^t)p_{mistake}(s_t) $$
 
 [
