@@ -32,6 +32,15 @@ permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+# Jekyll 3 now only supports Kramdown for Markdown
+kramdown:
+  # Use GitHub flavored markdown, including triple backtick fenced code blocks
+  input: GFM
+  # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    # Use existing pygments syntax highlighting css
+    css_class: 'highlight'
 
 include:
   - _pages
@@ -62,9 +71,6 @@ author:
   avatar : "/assets/images/bio-photo.jpg"
   bio    : "Software Engineer"
   links:
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://finlaymiller.com"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/finlaymiller"
