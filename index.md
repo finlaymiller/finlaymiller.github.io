@@ -1,9 +1,8 @@
 ---
-#
-# By default, content added below the "---" mark will appear in the home page
-# between the top bar and the list of recent posts.
-# To change the home page layout, edit the _layouts/home.html file.
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-#
 layout: home
+author_profile: true
 ---
+
+# What is this?
+
+I'm using this site to collect my personal projects. I've mainly been focused on a self-guided study in machine learning, and right now I'm doing Berkeley's course on [Deep Reinforcement Learning]({% post_url cs285/2021-01-15-cs285-hw1-introduction %}).

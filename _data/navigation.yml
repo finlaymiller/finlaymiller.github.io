@@ -1,9 +1,25 @@
+# main links
 main:
-  - title: "Posts"
-    url: /posts/
-  - title: "Categories"
-    url: /categories/
-  - title: "Tags"
-    url: /tags/
-  - title: "About"
-    url: /about/
+  - title: "Quick-Start Guide"
+    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+  # - title: "About"
+  #   url: https://mmistakes.github.io/minimal-mistakes/about/
+  # - title: "Sample Posts"
+  #   url: /year-archive/
+  # - title: "Sample Collections"
+  #   url: /collection-archive/
+  # - title: "Sitemap"
+  #   url: /sitemap/
+
+cs285:
+  - title: "Introduction"
+    url: /cs285/introduction
+  - title: "Homework 1: Imitation Learning"
+    children:
+      - title: "Supervised Learning"
+        url: /cs285/hw1/supervised-learning
+      - title: "Introduction to Deep Learning"
+        url: /cs285/hw1/intro-to-deep-rl
+      - title: "Homework 1"
+        url: cs285/hw1/solutions
+      
