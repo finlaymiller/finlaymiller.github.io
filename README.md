@@ -1,3 +1,3 @@
 # finlaymiller.com
 
-Code for my personal website.
+Contents of my personal site.
