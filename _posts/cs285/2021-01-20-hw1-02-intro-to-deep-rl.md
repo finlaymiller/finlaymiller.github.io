@@ -26,7 +26,7 @@ sidebar:
   * $$O$$: Observation space space ($$o \in O$$)
   * $$E$$: Emission (or observation) probability $$p(o_t\mid s_t)$$
 
-### The Objective
+### Objective
 
 ![reinforcement learning](/assets/img/cs285/hw1/reinforcement_learning.png)
 
@@ -85,14 +85,13 @@ Reinforcement Learning algorithms all generally have the same three part structu
 
 Regarding the costs of these steps:
 
-
 * _Generate Samples_: Depends greatly on the system in question. Real systems generate samples in real time, simulated systems can often run many times faster than real time
 * _Fit Your Model_: Also depends on the system! If you're doing a sum of rewards (as you would with a Policy Gradient Algorithm) it can be very fast. If you're fitting an entire neural net (as you would with reinforcement learning with back-propagation), it can be expensive.
 * _Improve Your Policy_: Same as 2.
 
-## Q and Value Functions
+### Q and Value Functions
 
-### The Q Function
+#### The Q Function
 
 To recap: A reinforcement learning objective is often an expectation, defined as a sum over time for every state-action marginal. (Recall that given a joint distribution of two discrete random variables $$X$$ and $$Y$$, the marginal distribution of $$X$$ is the probability distribution of $$X$$ without taking into account $$Y$$.). The expectation can be written as:
 
@@ -126,7 +125,7 @@ $$
 
 This means that you will get the expected sum of rewards if you roll out your policy from $$s_t, a_t$$.
 
-### The Value Function
+#### The Value Function
 
 Defined below, the value function is essentially the same, except it's conditional only on the state, rather than the state and the action:
 
@@ -140,20 +139,20 @@ $$
    E_{s_1\sim p(s_1)} = \left[ V^\pi(s_t) \right]
 $$
 
-### Using Q and Value Functions
+#### Using Q and Value Functions
 
 * If we have a policy $$\pi$$ and we know $$Q^\pi(s,a)$$ then we can improve $$\pi$$ by setting $$\pi'(a\mid s)=1$$ if $$a=argmax_a Q^\pi(s, a)$$. This means that regardless of what $$\pi$$ is, $$\pi'$$ is at least as good, and is probably better.
 * We could also compute the gradient to increase the probability of good actions $$a$$ given that, if $$Q^\pi(s,a) > V^\pi(s)$$, then $$a$$ is better than average. We would do this by modifying $$\pi(a\mid s)$$ to increase the probability of $$a$$ if $$Q^\pi(s,a) > V^\pi(s)$$.
 
-## Types of RL Algorithms
+### Types of RL Algorithms
 
-### Policy Gradients
+#### Policy Gradient
 
 Directly differentiate the objective w.r.t. the policy
 
 ![policy_gradient](/assets/img/cs285/hw1/policy_gradient.png)
 
-### Model Based
+#### Model Based
 
 ![model_based](/assets/img/cs285/hw1/model_based.png)
 
@@ -166,8 +165,45 @@ After estimating the transition model $$p$$ there are several options for improv
   * Can be tricky with regards to numerical stability
 * Use the model to learn a Value or Q function, then use the learned function to improve the policy.
 
-### Value Function Based
+#### Value Function Based
 
 $$V(s)$$ and $$Q(s, a)$$ are often NNs
 
 ![value_function](/assets/img/cs285/hw1/value_function.png)
+
+#### Actor-critic
+
+Improve the policy by estimating the value- or $$Q$$ function.
+
+![actor_critic](/assets/img/cs285/hw1/actor_critic.png)
+
+### How to decide?
+
+Some things to consider when choosing an algorithm are:
+
+* Trade-offs:
+  * Sample efficiency (how many samples do we need for a good policy?)
+    * Is the algorithm on or off policy (can we improve the policy without having to regenerate samples)?
+    * Real-world time $$\neq$$ efficiency
+  * Stability and ease of use
+    * Convergence criteria
+    * Supervised learning is almost always gradient descent
+    * Reinforcement learning is often _not_ gradient descent
+* Required assumptions:
+  * Is the system fully observable? (Mitigated by adding recurrence)
+  * Episodic or per-step learning?
+  * Continuity or smoothness
+
+#### Model comparison
+
+Here's how each of the first three aforementioned model types compare (oversimplified):
+
+|                   | Policy Gradient   | Model Based    | Value Function                    |
+|-------------------|-------------------|----------------|-----------------------------------|
+| Sample Efficiency | Least efficient   | Most efficient | Quite efficient                   |
+| Gradient Descent? | Yes               | No             | No (fixed-point iteration)        |
+| Assumptions       | Episodic Learning | Continuity     | Full Observability and Continuity |
+
+Here's how they line up on the efficiency scale:
+
+![efficiency](/assets/img/cs285/hw1/efficiency.png)
