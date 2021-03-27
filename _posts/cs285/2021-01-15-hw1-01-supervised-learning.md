@@ -2,6 +2,7 @@
 title: "Supervised Learning"
 permalink: "/cs285/hw1/supervised-learning"
 date: 2021-01-15T15:34:30-04:00
+excerpt: "Introduction to supervised learning terms and concepts"
 categories:
   - CS285
 tags:
@@ -24,8 +25,7 @@ sidebar:
 * $$a_t$$ -- Action (often a distribution)l
 * $$\pi_\theta(a_t \mid  o_t)$$ -- Policy based on $$o_t$$ (or $$s_t$$) which outputs a distribution over $$a_t$$ given $$o_t$$ ($$a_t \mid  o_t$$)
 * $$\theta$$ -- Policy parameters e.g. in a NN, $$\theta$$ = weights
-
-_Markov Property_: Given a state, one can figure out the distribution over the next state without knowing the previous state. 
+* Markov Property -- Given a state, one can figure out the distribution over the next state without knowing the previous state.
 Given $$s_t$$ we can find $$p(s_{t+1} \mid  s_t, a_t)$$ without $$s_{t-1}$$. It is worth noting that observations do not necessarily have the Markov Property.
 
 ### Behavior Cloning

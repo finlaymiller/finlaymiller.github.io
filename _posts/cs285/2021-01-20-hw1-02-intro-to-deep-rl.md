@@ -2,6 +2,7 @@
 title: "Introduction to Deep Reinforcement Learning"
 permalink: "/cs285/hw1/intro-to-deep-rl"
 date: 2021-01-20T20:30:0-04:00
+excerpt: "Introduction to reinforcement learning terms and concepts"
 categories:
   - CS285
 tags:
