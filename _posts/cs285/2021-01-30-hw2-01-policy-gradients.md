@@ -15,7 +15,7 @@ sidebar:
   nav: "cs285"
 ---
 
-## Objective
+## REINFORCE
 
 Given the finite-horizon case of the RL objective:
 
@@ -65,6 +65,54 @@ Our equation for the gradient is a reward-weighted maximum likelihood objective!
 
 Thus, we come to the REINFORCE algorithm:
 
-1. Sample $$\{\tau^i\}$$ from $$\pi_\theta(\mathbf{a}_t \mid \mathbf{s}_t)$$ (run the policy)
-2. Use the simplified equation above to approximate $$\nabla_\theta J(\theta)$$
+1. Sample $$\{\tau^i\}$$ from $$\pi_\theta(\mathbf{a}_t \mid \mathbf{s}_t)$$ (run the policy).
+2. Use the simplified equation above to approximate $$\nabla_\theta J(\theta)$$.
 3. Take a step of gradient descent $$\theta\leftarrow\theta+\alpha\nabla_\theta J(\theta)$$.
+
+This algorithm does not require the initial state distribution or the transition probabilities.
+{: .notice--warning}
+
+This algorithm does not actually use the Markov property, so it can be used in partially observed MDPs.
+{: .notice--warning}
+
+## Reducing Variance
+
+The main problem with policy gradient methods is high variance. In the image below where rewards are denoted with green lines we would expect to see the reward function move from the blue line to the blue dotted line.
+
+![variance movement 1](/assets/img/cs285/hw1/variance1.png)
+
+If we added an offset to the rewards we would expect the behavior below:
+
+![variance movement 2](/assets/img/cs285/hw1/variance2.png)
+
+We can use the concept of _causality_ to reduce the variance of the policy gradient. Causality is the idea that the policy at time $$t'$$ cannot affect the reward at time $$t$$ when $$t < t'$$. This allows us to simplify the equation for $$\nabla_\theta J(\theta)$$ to:
+
+$$
+  \nabla_{\theta} J(\theta) \approx \frac{1}{N} \sum_{i=1}^{N} \sum_{t=1}^{T} \nabla_{\theta} \log \pi_{\theta}(\mathbf{a}_{i, t} | \mathbf{s}_{i, t}) \hat{Q}_{i,t}
+$$
+
+Where $$\hat{Q}_{i,t}$$ is called the "_reward to go_":
+
+$$
+  \hat{Q}_{i,t} = \sum_{t'=t}^{T} \nabla_{\theta} \log \pi_{\theta}\left(\mathbf{a}_{i, t} | \mathbf{s}_{i, t}\right)
+$$
+
+## Baselines
+
+We want to center rewards around $$0$$, and to do so we'll subtract a quantity $$b$$ from them:
+
+$$
+  \nabla_{\theta} J(\theta) \approx \frac{1}{N} \sum_{i=1}^{N} \nabla_{\theta} \log p_{\theta}(\tau)[r(\tau) - b]
+$$
+
+Where $$b$$ is the average reward:
+
+$$
+  b = \frac{1}{N} \sum_{i=1}^{N} r(\tau)
+$$
+
+Subtracting this baseline does not bias the expectation. The average reward, though good, is not actually the best baseline. The best baseline is the expected reward, weighted  by magnitude values:
+
+$$
+  b* = \frac{\mathbb{E}[(\nabla_{\theta} \log p_{\theta}(\tau))^2r(\tau)]}{\mathbb{E}[(\nabla_{\theta} \log p_{\theta}(\tau))^2]}
+$$
