@@ -22,4 +22,8 @@ cs285:
         url: /cs285/hw1/intro-to-deep-rl
       - title: "Homework 1"
         url: cs285/hw1/solutions
+  - title: "Homework 2: Policy Gradients"
+    children:
+      title: "Policy Gradients"
+      url: /cs285/hw2/policy-gradients
       

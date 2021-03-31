@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-permalink: "/cs285/introduction"
+permalink: /cs285/introduction
 date: 2021-01-15T11:00:00-04:00
 excerpt: "I'm following along with Berkeley's Deep Reinforcement Learning Course"
 categories:
