@@ -9,6 +9,7 @@ tags:
   - CS285
   - Machine Learning
   - Deep Reinforcement Learning
+  - Policy Gradients
 toc: true
 toc_sticky: true
 sidebar:
