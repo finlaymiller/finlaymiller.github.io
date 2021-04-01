@@ -1,7 +1,7 @@
 ---
 title: "Supervised Learning"
-permalink: "/cs285/hw1/supervised-learning"
-date: 2021-01-15T15:34:30-04:00
+permalink: /cs285/hw1/supervised-learning
+date: 2021-01-16T15:34:30-04:00
 excerpt: "Introduction to supervised learning terms and concepts"
 categories:
   - CS285
@@ -9,6 +9,7 @@ tags:
   - CS285
   - Machine Learning
   - Deep Reinforcement Learning
+  - Policy Gradients
 toc: true
 toc_sticky: true
 sidebar:
@@ -65,7 +66,7 @@ $$ min_\theta \ (E_{s_{1:T},a_{1:T}} \left[ \sum_t c(s_{t},a_{t}) \right]) $$
 
 A reasonable reward function could be the log probability of an expert's action:
 
-$$ r(s,a) = log\;p(a = \pi^* (s) \mid  s) $$
+$$ r(s,a) = \log\;p(a = \pi^* (s) \mid  s) $$
 
 $$\pi^*$$ is the unknown expert policy. Another cost function could be a 0-1 loss function, which assigns a 0 if we perfectly match the expert's actions and a 1 in every other case (harsh!):
 
