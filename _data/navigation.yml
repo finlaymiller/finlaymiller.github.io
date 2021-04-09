@@ -26,4 +26,6 @@ cs285:
     children:
       - title: "Policy Gradients"
         url: /cs285/hw2/policy-gradients
+      - title: "Actor Critic Algorithms"
+        url: /cs285/hw2/actor-critic-algorithms
       
