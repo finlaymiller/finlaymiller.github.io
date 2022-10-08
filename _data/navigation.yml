@@ -14,18 +14,11 @@ main:
 cs285:
   - title: "Introduction"
     url: /cs285/introduction
-  - title: "Homework 1: Imitation Learning"
-    children:
-      - title: "Supervised Learning"
-        url: /cs285/hw1/supervised-learning
-      - title: "Introduction to Deep Learning"
-        url: /cs285/hw1/intro-to-deep-rl
-      - title: "Homework 1"
-        url: cs285/hw1/solutions
-  - title: "Homework 2: Policy Gradients"
-    children:
-      - title: "Policy Gradients"
-        url: /cs285/hw2/policy-gradients
-      - title: "Actor Critic Algorithms"
-        url: /cs285/hw2/actor-critic-algorithms
-      
+  - title: "Supervised Learning"
+    url: /cs285/supervised-learning
+  - title: "Introduction to Reinforcement Learning"
+    url: /cs285/intro-to-deep-rl
+  - title: "Policy Gradients"
+    url: /cs285/policy-gradients
+  - title: "Actor Critic Algorithms"
+    url: /cs285/actor-critic-algorithms

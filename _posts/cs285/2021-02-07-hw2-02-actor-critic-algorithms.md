@@ -1,6 +1,6 @@
 ---
 title: "Actor Critic Algorithms"
-permalink: /cs285/hw2/actor-critic-algorithms
+permalink: /cs285/actor-critic-algorithms
 date: 2021-02-07T10:00:00-04:00
 excerpt: "Learning actor critic algorithms"
 categories:
@@ -14,6 +14,8 @@ toc_sticky: true
 sidebar:
   nav: "cs285"
 ---
+
+[Video link](https://www.youtube.com/watch?v=wr00ef_TY6Q&list=PL_iWQOsE6TfXxKgI1GgyV1B_Xa0DxE5eH&index=28)
 
 ## Improving the Policy Gradient
 
@@ -35,11 +37,11 @@ $$
     \nabla_\theta J(\theta) \approx \frac{1}{N} \sum_{i=1}^N \sum_{t=1}^T \left[ \nabla_\theta\log \pi_\theta (\mathbf{a}_{i,t} \mid \mathbf{s}_{i,t})(Q(\mathbf{s}_{i, t}, \mathbf{a}_{i, t}) - V(\mathbf{s}_{i, t})) \right]
 $$
 
-$$Q - V$$ is so important that it is called the Advantage function. $$Q$$, $$V$$, and $$A$$ are often written with the superscript $$\pi$$ to denote that they rely on the policy $$\pi$$. To recap the three:
+$$Q - V$$ is so important that it is called the Advantage function, $$A$$. $$Q$$, $$V$$, and $$A$$ are often written with the superscript $$\pi$$ to denote that they rely on the policy $$\pi$$. To recap the three:
 
 1. $$Q^\pi (\mathbf{s}_{t}, \mathbf{a}_{t})$$: Total reward from taking $$\mathbf{a}_{t}$$ in $$\mathbf{s}_{t}$$
 2. $$V^\pi (\mathbf{s}_{t})$$: Total reward from $$\mathbf{s}_{t}$$
-3. $$A^\pi (\mathbf{s}_{t}, \mathbf{a}_{t})$$: How much better $$\mathbf{a}_{t}$$ is
+3. $$A^\pi (\mathbf{s}_{t}, \mathbf{a}_{t}) = Q^\pi (\mathbf{s}_{t}, \mathbf{a}_{t}) - V^\pi (\mathbf{s}_{t})$$: How much better $$\mathbf{a}_{t}$$ is
 
 This provides us with a large reduction in variance with the cost of a small increase in bias.
 
@@ -48,10 +50,10 @@ This provides us with a large reduction in variance with the cost of a small inc
 Which of $$Q^\pi$$, $$V^\pi$$, and $$A^\pi$$ should we fit and what should we fit it to? We'll choose $$V^\pi$$ since it's only dependent on $$\mathbf{s}_{t}$$ and the other two functions can be approximated by it as follows:
 
 $$
-\begin{align}
+\begin{align*}
     Q^\pi (\mathbf{s}_{t}, \mathbf{a}_{t}) &\approx r(\mathbf{s}_{t}, \mathbf{a}_{t}) + V^\pi(s_{t+1}) \\
     A^\pi (\mathbf{s}_{t}, \mathbf{a}_{t}) &\approx r(\mathbf{s}_{t}, \mathbf{a}_{t}) + V^\pi(s_{t+1}) - V^\pi(s_t)
-\end{align}
+\end{align*}
 $$
 
 Fitting $$V^\pi(s_t)$$ is called policy evaluation. $$J(\theta)$$ can be expressed as
@@ -89,10 +91,10 @@ A basic batch actor-critic algorithm follows the steps below:
 1. Sample $$\left\{ \mathbf{s}_{i, t}, \mathbf{a}_{i, t} \right\}$$ from $$\pi_\theta(\mathbf{a}_{i, t} \mid \mathbf{s}_{i, t})$$ (run the simulation)
 2. Fit $$\hat{V}_\phi^\pi(\mathbf{s})$$ to the sampled reward sums
 3. Evaluate $$\hat{A}^\pi(\mathbf{s}_i, \mathbf{a}_i) = r(\mathbf{s}_i, \mathbf{a}_i) + \hat{V}_\phi^\pi(\mathbf{s}_i') - \hat{V}_\phi^\pi(\mathbf{s}_i)$$
-4. $$\nabla_\theta J(\theta) \approx  \sum_i \nabla_\theta \log \pi_\theta(\mathbf{a}_{i, t} \mid \mathbf{s}_{i, t}) \hat{A}^\pi(\mathbf{s}_{i}, \mathbf{a}_{i})$$
+4. Do $$\nabla_\theta J(\theta) \approx  \sum_i \nabla_\theta \log \pi_\theta(\mathbf{a}_{i, t} \mid \mathbf{s}_{i, t}) \hat{A}^\pi(\mathbf{s}_{i}, \mathbf{a}_{i})$$
 5. Do gradient descent $$ \theta \leftarrow \theta + \alpha \nabla_\theta J(\theta) $$
 
-![ac algorithm](/assets/img/cs285/hw2/ac_algo.png)
+![ac algorithm](/assets/img/20210207/ac_algo.png)
 
 ### Discount Factors
 
@@ -125,7 +127,7 @@ We can also create an algorithm which updates our policy after _each_ simulator/
 1. Take action $$\mathbf{a} \sim \pi_\theta (\mathbf{a} \mid \mathbf{s})$$ to get $$(\mathbf{s}, \mathbf{a}, \mathbf{s}', r)$$
 2. Update $$\hat{V}_\phi^\pi$$ using the target $$r + \gamma \hat{V}_\phi^\pi(\mathbf{s'})$$
 3. Evaluate $$\hat{A}^\pi(\mathbf{s}, \mathbf{a}) = r(\mathbf{s}, \mathbf{a}) + \hat{V}_\phi^\pi(\mathbf{s}') - \hat{V}_\phi^\pi(\mathbf{s})$$
-4. $$\nabla_\theta J(\theta) \approx  \nabla_\theta \log \pi_\theta(\mathbf{a} \mid \mathbf{s}) \hat{A}^\pi(\mathbf{s}, \mathbf{a})$$
+4. Find $$\nabla_\theta J(\theta) \approx  \nabla_\theta \log \pi_\theta(\mathbf{a} \mid \mathbf{s}) \hat{A}^\pi(\mathbf{s}, \mathbf{a})$$
 5. Do gradient descent $$ \theta \leftarrow \theta + \alpha \nabla_\theta J(\theta) $$
 
 ## The Architecture
@@ -134,7 +136,7 @@ A good starting point for architecture is to use two NNs: one which outputs a sc
 
 There's also the question of whether to use synchronous or asynchronous AC, when there are multiple actors.
 
-![synch vs asynch arch](/assets/img/cs285/hw2/synch_asynch.png)
+![synch vs asynch arch](/assets/img/20210207/synch_asynch.png)
 
 ## Critics as Baselines
 
