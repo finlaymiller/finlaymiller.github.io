@@ -1,0 +1,230 @@
+:root {
+  color-scheme: light;
+  --ink: #151515;
+  --muted: #646464;
+  --line: #c9c9c9;
+  --paper: #fff;
+  --soft: #f5f5f2;
+  --link: #0057b8;
+  --measure: 48rem;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body { margin: 0; }
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+a:hover { text-decoration-thickness: 2px; }
+
+a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 10;
+  padding: 0.5rem 0.7rem;
+  color: var(--paper);
+  background: var(--ink);
+  transform: translateY(-180%);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+.page-shell {
+  width: min(var(--measure), calc(100% - 2.25rem));
+  margin-inline: auto;
+}
+
+.site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2.5rem 0 0.8rem;
+  border-bottom: 1px solid var(--ink);
+}
+
+.site-name {
+  color: var(--ink);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  font-size: 0.92rem;
+}
+
+main { min-height: 65vh; }
+
+section,
+.page-header,
+.article { margin: 3rem 0; }
+
+.intro { margin-block: 4.5rem; }
+
+h1, h2, h3 {
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+}
+
+h1 {
+  max-width: 18ch;
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 8vw, 3.3rem);
+}
+
+h2 {
+  margin: 0 0 1.25rem;
+  font-size: 1.4rem;
+}
+
+h3 { font-size: 1rem; }
+
+p { max-width: 70ch; }
+
+.intro > p:first-of-type,
+.page-header > p:last-child {
+  font-size: 1.08rem;
+}
+
+.contact-line {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.6rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.item-list { border-top: 1px solid var(--line); }
+
+.list-item {
+  display: grid;
+  grid-template-columns: 9.75rem 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.list-item h2,
+.list-item h3 { margin: 0; }
+
+.list-item p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.item-date,
+.article-meta {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.article-header {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.article-header h1 { max-width: 22ch; }
+
+.article-body { margin-top: 2.5rem; }
+
+.article-body h2,
+.article-body h3 { margin-top: 2.5rem; }
+
+.article-body img,
+.article-body video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.75rem auto;
+}
+
+.article-body pre {
+  max-width: 100%;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--soft);
+}
+
+.article-body code { font-family: inherit; }
+
+.article-body blockquote {
+  margin-left: 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--ink);
+  color: var(--muted);
+}
+
+.article-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.article-body th,
+.article-body td {
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--line);
+}
+
+.article-back { margin-top: 3rem; }
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0 2.5rem;
+  border-top: 1px solid var(--ink);
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 38rem) {
+  .site-header,
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .site-header { padding-top: 1.5rem; }
+  .intro { margin-block: 3rem; }
+
+  .list-item {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

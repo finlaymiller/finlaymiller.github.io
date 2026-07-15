@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Replace this with a concise description of the project's contribution.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Project title">
+    <meta property="og:description" content="Replace this with a concise description of the project's contribution.">
+    <meta property="og:url" content="https://finlaymiller.com/projects/example-project/">
+    <title>Project title · Finlay Miller</title>
+    <link rel="stylesheet" href="static/project.css">
+    <script defer src="static/project.js"></script>
+  </head>
+  <body>
+    <header class="project-nav">
+      <a href="/">← finlaymiller.com</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="venue">Conference or journal · 20XX</p>
+        <h1>Project title: a concise description of the contribution</h1>
+        <div class="authors" aria-label="Authors">
+          <a href="#">First Author</a>
+          <a href="#">Second Author</a>
+          <a href="/">Finlay Miller</a>
+        </div>
+        <p class="affiliation">Institution or research group</p>
+        <nav class="project-links" aria-label="Project resources">
+          <a href="#">Paper</a>
+          <a href="#">Code</a>
+          <a href="#">Demo</a>
+          <a href="#citation">BibTeX</a>
+        </nav>
+      </section>
+
+      <section class="feature" aria-labelledby="teaser-title">
+        <div class="media-placeholder" role="img" aria-label="Replace with the project's teaser image or video">
+          <span>Teaser image or video</span>
+        </div>
+        <p id="teaser-title" class="caption">
+          A one-sentence explanation of what the visitor should notice in the teaser.
+        </p>
+      </section>
+
+      <section class="content-section" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p class="lead">
+          Replace this scaffold with the paper abstract. State the problem, the central
+          idea, the evidence, and the result. This microsite is deliberately independent
+          from the main Eleventy layout, so it can use a richer visual language without
+          leaking styles or scripts into the rest of the site.
+        </p>
+      </section>
+
+      <section class="content-section" aria-labelledby="method-title">
+        <h2 id="method-title">Method</h2>
+        <div class="two-column">
+          <div class="media-placeholder compact" role="img" aria-label="Replace with a method diagram">
+            <span>Method diagram</span>
+          </div>
+          <div>
+            <h3>Describe the essential idea</h3>
+            <p>
+              Keep the visible page selective. Link to the paper for complete derivations
+              and use this area to explain the intuition behind the work.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="results-title">
+        <h2 id="results-title">Results</h2>
+        <div class="result-grid">
+          <article><strong>00.0</strong><span>Primary metric</span></article>
+          <article><strong>+00%</strong><span>Improvement</span></article>
+          <article><strong>00×</strong><span>Efficiency</span></article>
+        </div>
+      </section>
+
+      <section class="content-section" id="citation" aria-labelledby="citation-title">
+        <h2 id="citation-title">Citation</h2>
+        <div class="citation-block">
+          <pre><code id="bibtex">@article{project20xx,
+  title   = {Project title},
+  author  = {First Author and Second Author and Finlay Miller},
+  journal = {Conference or Journal},
+  year    = {20XX}
+}</code></pre>
+          <button type="button" data-copy-bibtex>Copy BibTeX</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Replace this note with the project acknowledgements and template attribution.</p>
+    </footer>
+  </body>
+</html>

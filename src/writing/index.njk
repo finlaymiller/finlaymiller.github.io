@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+title: Writing
+description: Technical notes and writing by Finlay Miller.
+permalink: /writing/index.html
+---
+<header class="page-header">
+  <p class="eyebrow">Notes and essays</p>
+  <h1>Writing</h1>
+  <p>Technical notes from courses, experiments, and whatever I am trying to understand.</p>
+</header>
+
+<div class="item-list">
+  {% for post in collections.writing %}
+    <article class="list-item">
+      <time class="item-date" datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+      <div>
+        <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+        {% if post.data.excerpt %}<p>{{ post.data.excerpt }}</p>{% endif %}
+      </div>
+    </article>
+  {% endfor %}
+</div>

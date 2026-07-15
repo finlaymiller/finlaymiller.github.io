@@ -1,33 +1,15 @@
-# Custom
-docs/
-.idea/
+# Generated site
+_site/
 
-# Vim
-*~
-*.sw[p_]
-
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
-
-# Ruby Gem
-*.gem
-.bundle
-Gemfile.lock
-**/vendor/bundle
-
-# Node.js and NPM
-node_modules
+# Dependencies
+node_modules/
 npm-debug.log*
-package-lock.json
-codekit-config.json
 
-# macOS
+# Local tools and editors
 .DS_Store
+.idea/
+.vscode/
 
-# Jekyll generated files
-.jekyll-cache
-.jekyll-metadata
-.sass-cache
-_asset_bundler_cache
-_site
+# Eleventy cache
+.cache/
+
