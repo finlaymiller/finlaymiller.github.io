@@ -58,6 +58,10 @@ project slug, and edit its `index.html` and `static/` assets. The page is kept
 outside the main site layout so a project can use its own visual identity and
 dependencies without affecting the personal site.
 
+Eleventy automatically copies the `static/` directory for every project. If you
+create a new project while `npm run dev` is already running, restart the server
+once so Eleventy discovers the new directory.
+
 Update both `src/projects/index.njk` and `src/index.njk` to link to the project.
 Remove `noindex` from the project page when its placeholder content has been
 replaced.

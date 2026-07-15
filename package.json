@@ -8,7 +8,8 @@
     "clean": "node -e \"require('node:fs').rmSync('_site', { recursive: true, force: true })\"",
     "build": "npm run clean && eleventy",
     "check:math": "node scripts/check-math.mjs",
-    "test": "npm run build && npm run check:math",
+    "check:projects": "node scripts/check-project-assets.mjs",
+    "test": "npm run build && npm run check:math && npm run check:projects",
     "dev": "eleventy --serve",
     "debug": "DEBUG=Eleventy* eleventy"
   },

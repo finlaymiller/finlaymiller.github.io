@@ -1,12 +1,21 @@
 import markdownIt from "markdown-it";
 import texmath from "markdown-it-texmath";
 import katex from "katex";
+import fs from "node:fs";
+import path from "node:path";
 
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
-  eleventyConfig.addPassthroughCopy({
-    "src/projects/example-project/static": "projects/example-project/static",
-  });
+  for (const entry of fs.readdirSync("src/projects", { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+
+    const staticDirectory = path.join("src/projects", entry.name, "static");
+    if (!fs.existsSync(staticDirectory)) continue;
+
+    eleventyConfig.addPassthroughCopy({
+      [staticDirectory]: path.join("projects", entry.name, "static"),
+    });
+  }
   eleventyConfig.addPassthroughCopy({
     "node_modules/katex/dist/katex.min.css": "assets/vendor/katex.min.css",
     "node_modules/katex/dist/fonts": "assets/vendor/fonts",
