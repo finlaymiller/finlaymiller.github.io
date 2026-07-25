@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="A Framework for Personalized Human-AI Musical Improvisation">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="SmartLooper">
+    <meta property="og:description" content="A Framework for Personalized Human-AI Musical Improvisation">
+    <meta property="og:url" content="https://finlaymiller.com/projects/smartlooper/">
+    <title>SmartLooper · Finlay Miller</title>
+    <link rel="stylesheet" href="static/project.css">
+    <script defer src="static/project.js"></script>
+  </head>
+  <body>
+    <aside class="construction-banner" role="status">
+      <strong>Under construction:</strong> This project page is still being updated.
+    </aside>
+
+    <!-- <header class="project-nav">
+      <a href="/">← finlaymiller.com</a>
+    </header> -->
+
+    <main>
+      <section class="hero">
+        <p class="venue">ISMIR · 2026</p>
+        <h1>SmartLooper: a Framework for Personalized Human-AI Musical Improvisation</h1>
+        <div class="authors" aria-label="Authors">
+          <a href="/">Finlay Miller<sup>1</sup></a>
+          <a href="https://web.cs.dal.ca/~oore/">Sageev Oore<sup>1</sup></a>
+          <a href="https://www.linkedin.com/in/chandramoulisastry/">Chandramouli S. Sastry<sup>1</sup></a>
+          <a href="https://scholar.google.com/citations?user=yok9E_EAAAAJ">Marvin F. da Silva<sup>1</sup></a>
+          <a href="https://www.linkedin.com/in/sri-harsha-dumpala-6384a557/">Sri Harsha Dumpala<sup>1</sup></a>
+          <a href="https://dani.oore.ca/">Dani Oore<sup>2</sup></a>
+          <a href="https://scottclowe.com/">Scott C. Lowe<sup>3</sup></a>
+        </div>
+        <p class="affiliation"><sup>1</sup> Dalhousie University, <sup>2</sup> Independent, <sup>3</sup> Vector Institute</p>
+        <nav class="project-links" aria-label="Project resources">
+          <a href="#">Paper</a>
+          <!-- <a href="#">Code</a> -->
+          <a href="#">Demo</a>
+          <a href="#citation">BibTeX</a>
+        </nav>
+      </section>
+
+      <section class="feature" aria-labelledby="teaser-title">
+        <div class="video-embed">
+          <iframe
+            src="https://www.youtube.com/watch?v=CXNW2Khv7oA"
+            title="SuperLooper Demo Video 1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <p id="teaser-title" class="caption"><i>
+          A musician at a Disklavier plays a short phrase—a bass groove, a two-handed comp, or a chord vamp. The piano repeats the phrase and begins to loop it, subtly reworking it: a rhythmic displacement here, a harmonic shift there, but never too much change at once. The musician improvises over this evolving loop, layering new lines as the system continues to develop its own, optionally implicitly guided by the musician's playing. The result is a fluid, co-created improvisation, grounded entirely in the performer's own recorded playing; the dataset was created by the musician, and possibly expanded with synthetically generated material in the same style if the musician chose to do so.
+        </i></p>
+      </section>
+
+      <section class="content-section" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <p class="lead">
+          Real-time human-AI musical collaboration presents a persistent design challenge: AI contributions tend to be either too conservative to be interesting or too unpredictable to play along with. We posit that looping (and related practices of vamping and grooving) offers a framework that sidesteps this trade-off. These recurring structures bound variation within forms the musician already understands, and lets development accrue over musical rather than sample-level timescales; a balance upon which improvisers have long relied when playing with each other.
+        </p>
+        <p class="lead">
+                    We present SmartLooper, a system for real-time human-AI piano improvisation built on this premise. The performer first assembles a personal corpus of their own loop-based recordings, giving them complete control over the stylistic space the system inhabits. SmartLooper segments this corpus into short loops and embeds them using pretrained MIDI models (selectable by the performer). In performance, the system improvises by retrieving loops from the corpus via a stochastic walk in embedding space: successive loops are chosen for proximity so that transitions feel continuous. The musician plays freely over this evolving bed, essentially playing a duet with themselves.
+        </p>
+        <p class="lead">
+          To broaden the corpus without diluting its character, we additionally train a small discriminator to distinguish degraded MIDI from samples in the personal corpus, and use it to filter synthetic loops generated by MIDI-GPT in the style of the corpus. The resulting dataset extension provides broader support for fluid transitions while preserving the performer's voice. SmartLooper has been used by professional musicians in over ten hours of live performance for audiences totaling more than a thousand listeners; we provide example recordings.        
+        </p>
+      </section>
+
+      <section class="content-section" aria-labelledby="method-title">
+        <h2 id="method-title">Method</h2>
+        <div class="two-column">
+        <img class="method-diagram" src="static/images/player_timeline.png" alt="Diagram showing the project method">
+          <div>
+            <h3>Describe the essential idea</h3>
+            <p>
+              Keep the visible page selective. Link to the paper for complete derivations
+              and use this area to explain the intuition behind the work.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="results-title">
+        <h2 id="results-title">Results</h2>
+        <!-- <div class="result-grid">
+          <article><strong>00.0</strong><span>Primary metric</span></article>
+          <article><strong>+00%</strong><span>Improvement</span></article>
+          <article><strong>00×</strong><span>Efficiency</span></article>
+        </div> -->
+      </section>
+
+      <section class="content-section" id="citation" aria-labelledby="citation-title">
+        <h2 id="citation-title">Citation</h2>
+        <div class="citation-block">
+          <pre><code id="bibtex">@article{SmartLooper,
+  title   = {SmartLooper: a Framework for Personalized Human--AI Musical Improvisation},
+  author  = {F. Miller, S. Oore, C. Sastry, M. da Silva, S. Dumpala, D. Oore, and S. Lowe},
+  journal = {Proc. of the 27th Int. Society for Music Information Retrieval Conf.},
+  year    = {2026}
+}</code></pre>
+          <button type="button" data-copy-bibtex>Copy BibTeX</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+          target="_blank">Academic Project Page Template</a> which was adopted from the <a
+          href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+        You are free to borrow the source code of this page, they just ask that you link back to their page in the
+        footer. <br> This page is licensed under a <a rel="license"
+          href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+          Commons Attribution-ShareAlike 4.0 International License</a>.
+      </p>
+    </footer>
+  </body>
+</html>
