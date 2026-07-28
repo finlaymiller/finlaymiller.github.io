@@ -125,6 +125,55 @@ button {
   font-size: clamp(1.15rem, 2.5vw, 1.45rem);
 }
 
+.section-intro {
+  max-width: 48rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.performance-list {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.performance {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 1.5rem;
+}
+
+.performance h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+}
+
+.performance p {
+  max-width: 48rem;
+  margin: 0;
+  color: var(--muted);
+}
+
+.video-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem 1rem;
+}
+
+.video-link {
+  font-weight: 700;
+  white-space: nowrap;
+  text-underline-offset: 0.2em;
+}
+
+.performance-note {
+  grid-template-columns: 1fr;
+}
+
 .two-column {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(15rem, 0.8fr);
@@ -172,6 +221,8 @@ footer {
   .hero { margin-top: 2rem; }
   .media-placeholder { min-height: 17rem; }
   .two-column, .result-grid { grid-template-columns: 1fr; }
+  .performance { grid-template-columns: 1fr; gap: 0.8rem; }
+  .video-links { justify-content: flex-start; }
   .content-section { padding: 3.5rem 0; }
 }
 
